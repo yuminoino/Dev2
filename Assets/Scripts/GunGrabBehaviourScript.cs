@@ -6,6 +6,7 @@ public class GunGrabBehaviourScript : MonoBehaviour
 {
     public InputAction GrabAction;
     public GameObject TemporaryGunObject;
+    public Transform GunDummyTransform;
 
     Transform grabbedGunObject;
 
@@ -24,14 +25,16 @@ public class GunGrabBehaviourScript : MonoBehaviour
             if (!grabOnce)
             {
 
+
               grabbedGunObject = TemporaryGunObject.transform;
 
               grabbedGunObject.parent = transform;
               grabbedGunObject.GetComponent<Rigidbody>().isKinematic = true;
-              grabbedGunObject.localPosition = Vector3.zero;
-              grabbedGunObject.localRotation = Quaternion.identity;
+              grabbedGunObject.localPosition = GunDummyTransform.localPosition;
+                grabbedGunObject.localRotation = GunDummyTransform.localRotation;
 
-              grabOnce = true;
+                grabOnce = true;
+              
 
             }
         }
