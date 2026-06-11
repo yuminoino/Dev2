@@ -4,9 +4,17 @@ using UnityEngine.InputSystem;
 public class GunGrabBehaviourScript : MonoBehaviour
 
 {
+    [Header("Manipulations:")]
     public InputAction GrabAction;
-    
     public Transform GunDummyTransform;
+
+    [Header("Shoot System:")]
+    public InputAction ShootAction;
+    public Rigidbody BulletPrefab;
+    public Transform GunTip;
+    public float ShootForce = 1000;
+    bool shootOnce;
+    
 
     GameObject temporaryGunObject;
 
@@ -56,19 +64,46 @@ public class GunGrabBehaviourScript : MonoBehaviour
         }
     }
 
+     private void FixedUpdate()
+    {
+        if (grabbedGunObject != null && ShootAction.IsPressed()) {
+            if (!shootOnce)
+            {
+                ShootBullet();
+                shootOnce = true;
+            }
+        }
+        else
+        {
+            shootOnce = false;
+        }
+
+        void ShootBullet()
+            
+                
+                {
+                    GameObject spawnedBullet = Instantiate(BulletPrefab.gameObject);
+                    spawnedBullet.transform.position = GunTip.position; //GunTip.position bc GunTip is alr a transform;
+                    spawnedBullet.transform.rotation = GunTip.rotation;
+                    spawnedBullet.GetComponent<Rigidbody>().AddForce(GunTip.forward * ShootForce);
+                    
+                }
+            
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "GunTag")
+        if (other.gameObject.tag == "Gun")
         {
-            temporaryGunObject = other.gameObject.transform.parent.gameObject;
+            temporaryGunObject = other.gameObject.transform.gameObject;
             
         }
     }
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "GunTag")
+        if (other.gameObject.tag == "Gun")
         {
             temporaryGunObject = null;
         }
     }
+}
+
 }

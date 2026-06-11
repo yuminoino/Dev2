@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Meshy_AI_Brainz_Boy_0514094412_texture_Optimized@Zombie Idle
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dc2fb3589a8c9574aa4a70f3f3a4ce13, type: 3}
+      propertyPath: m_TagString
+      value: ZombieTag
+      objectReference: {fileID: 0}
     - target: {fileID: 2664098864995057252, guid: dc2fb3589a8c9574aa4a70f3f3a4ce13, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -66,6 +70,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dc2fb3589a8c9574aa4a70f3f3a4ce13, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3068353333046748507}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dc2fb3589a8c9574aa4a70f3f3a4ce13, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4933607105800266862}
     - targetCorrespondingSourceObject: {fileID: 7157309607397930224, guid: dc2fb3589a8c9574aa4a70f3f3a4ce13, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2528838254005279487}
@@ -141,3 +148,26 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &4933607105800266862
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8747422794378916166}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4398098
+  m_Height: 1.7989174
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8143392, z: 0.18661225}

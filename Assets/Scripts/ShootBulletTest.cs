@@ -4,9 +4,10 @@ public class ShootBulletTest : MonoBehaviour
 {
     public Rigidbody BulletPrefab;
     public Transform GunTip;
-    public float BulletSpeed = 100f;
+    public float BulletSpeed = 1000f;
     public bool ShootBullet;
-    
+    bool shootOnce;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,9 +27,9 @@ public class ShootBulletTest : MonoBehaviour
         if (ShootBullet)
         {
            GameObject spawnedBullet = Instantiate(BulletPrefab.gameObject);
-            spawnedBullet.transform.position = GunTip.transform.position;
-            spawnedBullet.transform.rotation = GunTip.transform.rotation;
-            spawnedBullet.GetComponent<Rigidbody>().AddForce(GunTip.transform.forward * BulletSpeed, ForceMode.Impulse);
+            spawnedBullet.transform.position = GunTip.position; //GunTip.position bc GunTip is alr a transform;
+            spawnedBullet.transform.rotation = GunTip.rotation;
+            spawnedBullet.GetComponent<Rigidbody>().AddForce(GunTip.forward * BulletSpeed);
             ShootBullet = false;
 
         }
