@@ -5,8 +5,10 @@ public class GunGrabBehaviourScript : MonoBehaviour
 
 {
     public InputAction GrabAction;
-    public GameObject TemporaryGunObject;
+    
     public Transform GunDummyTransform;
+
+    GameObject temporaryGunObject;
 
     Transform grabbedGunObject;
 
@@ -20,13 +22,13 @@ public class GunGrabBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (TemporaryGunObject != null && GrabAction.IsPressed())
+        if (temporaryGunObject != null && GrabAction.IsPressed())
         {
             if (!grabOnce)
             {
 
 
-              grabbedGunObject = TemporaryGunObject.transform;
+              grabbedGunObject = temporaryGunObject.transform;
 
               grabbedGunObject.parent = transform;
               grabbedGunObject.GetComponent<Rigidbody>().isKinematic = true;
@@ -58,7 +60,7 @@ public class GunGrabBehaviourScript : MonoBehaviour
     {
         if (other.gameObject.tag == "GunTag")
         {
-            TemporaryGunObject = other.gameObject.transform.parent.gameObject;
+            temporaryGunObject = other.gameObject.transform.parent.gameObject;
             
         }
     }
@@ -66,7 +68,7 @@ public class GunGrabBehaviourScript : MonoBehaviour
     {
         if (other.gameObject.tag == "GunTag")
         {
-            TemporaryGunObject = null;
+            temporaryGunObject = null;
         }
     }
 }
