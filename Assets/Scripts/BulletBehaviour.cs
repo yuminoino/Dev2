@@ -25,7 +25,7 @@ public class BulletBehaviour : MonoBehaviour
         // distruggo in ritardo l'oggetto colpito per far partire l'animazione
         if (collision.gameObject.tag == "ZombieTag")
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<ZombieBehaviour>().ZombieColpito();
         }
     }
     

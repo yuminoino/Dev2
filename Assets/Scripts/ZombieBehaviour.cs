@@ -1,14 +1,21 @@
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem.Processors;
 
-public class TestUnityNavigation : MonoBehaviour
+public class ZombieBehaviour : MonoBehaviour
+
 {
+
     public Transform TargetObject;
     public NavMeshAgent ZombieAgent;
     public Animator ZombieAnimator;
     public float MovementThreshold = 0.1f;
     public float AttackDistanceTreshold = 1f;
+    public bool isDead = false;
+    
+    public int ZombieLifePoints = 10;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -41,6 +48,22 @@ public class TestUnityNavigation : MonoBehaviour
     }
     public void Attacco()
     {
-        GameManager.Singleton.VitaGiocatore -= 10;
+        GameManager.Singleton.VitaGiocatore --;
+    }
+
+    public void ZombieColpito()
+    {
+        ZombieLifePoints --; // Decrease the zombie's life points by 1
+       if (ZombieLifePoints <= 0)
+        {
+            ZombieAnimator.SetTrigger("isDead");
+            Invoke("DestroyZombie", 5f); // Call DestroyZombie after 2 seconds
+            isDead = true;
+            
+        }
+    }
+    void DestroyZombie()
+    {
+     Destroy(gameObject);
     }
 }
